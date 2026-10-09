@@ -1,0 +1,11 @@
+officekit
+ollama
+pydantic
+python-dotenv
+requests
+ddgs
+python-pptx 
+pillow 
+arxiv
+pymupdf
+PyYAML

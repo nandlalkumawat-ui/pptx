@@ -1,0 +1,456 @@
+{
+  "title": "Advancements in Electric Vehicle Battery Technology",
+  "subtitle": "Unlocking Sustainable Transportation",
+  "slides": [
+    {
+      "slide_number": 1,
+      "title": "Introduction to EV Batteries",
+      "subtitle": "Understanding the Basics",
+      "layout": "title",
+      "paragraphs": [
+        "Electric vehicle batteries are rechargeable batteries used to power electric motors in BEVs and HEVs."
+      ],
+      "bullets": [
+        "Typically lithium-ion batteries",
+        "High power-to-weight ratio and energy density"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/2c46b3d805f49514c0337b212734daab79e88634_1600.jpg",
+      "image_caption": "Image: evautostreet.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://evautostreet.com/wp-content/uploads/2026/03/What-Are-EV-Batteries_-A-Complete-Beginners-Guide-scaled.jpg",
+      "image_source": "evautostreet.com",
+      "source_urls": [
+        "https://evautostreet.com/what-are-ev-batteries-a-complete-beginners-guide/"
+      ]
+    },
+    {
+      "slide_number": 2,
+      "title": "Current EV Battery Technologies",
+      "subtitle": "Lithium-Ion Dominance",
+      "layout": "content",
+      "paragraphs": [
+        "Lithium-ion batteries are the most widely used type of battery in electric vehicles due to their high energy density and power-to-weight ratio."
+      ],
+      "bullets": [
+        "Solid-state cells: higher energy density with lower fire risk",
+        "Sodium-ion batteries: emerging alternative with similar performance"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/4a20cccde3da83e7bf6e8b53e3324edc519ea98c_1600.jpg",
+      "image_caption": "Image: batteryswapcabinet.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://batteryswapcabinet.com/wp-content/uploads/2024/11/Top-10-EV-battery-technologies-which-is-the-best.webp",
+      "image_source": "batteryswapcabinet.com",
+      "source_urls": [
+        "https://batteryswapcabinet.com/top-10-ev-battery-technologies-which-is-the-best/"
+      ]
+    },
+    {
+      "slide_number": 3,
+      "title": "Advancements in EV Battery Technology",
+      "subtitle": "Next-Generation Chemistries",
+      "layout": "content",
+      "paragraphs": [
+        "Researchers are exploring new battery chemistries, such as solid-state and sodium-ion batteries, to improve energy density and reduce costs."
+      ],
+      "bullets": [
+        "Lithium-air batteries: potentially 5x more efficient than lithium-ion",
+        "Zinc-air batteries: low-cost alternative with high energy density"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/54a3bf0f76d08b33804183d79d7bbbf5b64462ab_1600.jpg",
+      "image_caption": "Image: slideteam.net",
+      "image_caption_font_size": 10,
+      "image_url": "https://www.slideteam.net/media/catalog/product/cache/1280x720/m/a/major_advancements_in_ev_battery_technology_exploring_opportunities_ppt_example_slide01.jpg",
+      "image_source": "slideteam.net",
+      "source_urls": [
+        "https://www.slideteam.net/major-advancements-in-ev-battery-technology-exploring-opportunities-ppt-example.html"
+      ]
+    },
+    {
+      "slide_number": 4,
+      "title": "Comparison of EV Battery Types",
+      "subtitle": "Pros and Cons",
+      "layout": "comparison",
+      "paragraphs": [
+        "Each battery type has its advantages and disadvantages, making it crucial to choose the right technology for specific applications."
+      ],
+      "bullets": [
+        "Lithium-ion: high energy density, but expensive and prone to fires",
+        "Sodium-ion: lower cost, but similar performance to lithium-ion"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": []
+    },
+    {
+      "slide_number": 5,
+      "title": "Future of EV Battery Technology",
+      "subtitle": "Emerging Trends and Innovations",
+      "layout": "content",
+      "paragraphs": [
+        "The future of electric vehicle battery technology holds promise for further improvements in energy density, cost, and sustainability."
+      ],
+      "bullets": [
+        "Solid-state batteries: potentially 10x more efficient than lithium-ion",
+        "Advanced materials: enabling higher energy density and faster charging"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/028ca04a8324fd2cc65481f288ed3db4d561dd5e_1600.jpg",
+      "image_caption": "Image: drivegreenjourney.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://drivegreenjourney.com/wp-content/uploads/2025/01/EV-battery-technology.jpg",
+      "image_source": "drivegreenjourney.com",
+      "source_urls": [
+        "https://drivegreenjourney.com/ev-battery-technology-is-shaping-the-future/"
+      ]
+    },
+    {
+      "slide_number": 6,
+      "title": "Challenges and Limitations",
+      "subtitle": "Addressing the Gaps",
+      "layout": "content",
+      "paragraphs": [
+        "Despite advancements, electric vehicle battery technology still faces challenges related to energy density, cost, and sustainability."
+      ],
+      "bullets": [
+        "Limited recycling infrastructure: hindering waste management",
+        "High material costs: affecting overall affordability"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/fe70263d9a3fa100ff8761d5764875eb3d98ac87_1600.jpg",
+      "image_caption": "Image: mdpi.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://pub.mdpi-res.com/batteries/batteries-11-00209/article_deploy/html/images/batteries-11-00209-g008.png?1748423561",
+      "image_source": "mdpi.com",
+      "source_urls": [
+        "https://www.mdpi.com/2313-0105/11/6/209"
+      ]
+    },
+    {
+      "slide_number": 7,
+      "title": "Conclusion",
+      "subtitle": "",
+      "layout": "conclusion",
+      "paragraphs": [
+        "In conclusion, electric vehicle battery technology has made significant progress in recent years, with emerging trends and innovations promising further improvements."
+      ],
+      "bullets": [
+        "Advancements in solid-state and sodium-ion batteries",
+        "Emerging chemistries: lithium-air and zinc-air batteries"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": []
+    },
+    {
+      "slide_number": 8,
+      "title": "Slide 8",
+      "subtitle": "",
+      "layout": "data",
+      "paragraphs": [
+        "| Battery Type | Energy Density (Wh/kg) | Cost ($/kWh) |\n| --- | --- | --- |\n| Lithium-ion | 150-200 | 100-150 |\n| Sodium-ion | 120-180 | 80-120 |\n| Solid-state | 250-300 | 50-80 |\n| Lithium-air | 500-600 | 20-30 |\n| Zinc-air | 400-500 | 15-25 |"
+      ],
+      "bullets": [],
+      "table": {
+        "headers": [
+          "Battery Type",
+          "Energy Density (Wh/kg)",
+          "Cost ($/kWh)"
+        ],
+        "rows": [
+          [
+            "Lithium-ion",
+            "150-200",
+            "100-150"
+          ],
+          [
+            "Sodium-ion",
+            "120-180",
+            "80-120"
+          ],
+          [
+            "Solid-state",
+            "250-300",
+            "50-80"
+          ],
+          [
+            "Lithium-air",
+            "500-600",
+            "20-30"
+          ],
+          [
+            "Zinc-air",
+            "400-500",
+            "15-25"
+          ]
+        ]
+      },
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": []
+    }
+  ],
+  "sources": [
+    {
+      "title": "Electric vehicle battery - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Electric_vehicle_battery",
+      "snippet": "Electric vehicle battery Nissan Leaf cutaway showing part of the battery in 2009 An electric vehicle battery is a rechargeable battery used to power the electric motors of a battery electric vehicle (BEV) or hybrid electric vehicle (HEV). They are typically lithium-ion batteries that are designed fo"
+    },
+    {
+      "title": "Guide to Electric Vehicle Battery Technology | Updated 2026 - ACTE",
+      "url": "https://www.acte.in/ev-battery-guide",
+      "snippet": "Learn All About the Electric Vehicle Battery (Ev Battery)! Understand How It Works, Components, Its Benefits, Lifespan, and the Future of Ev Battery Technology."
+    },
+    {
+      "title": "What's next for EV batteries in 2026 | MIT Technology Review",
+      "url": "https://www.technologyreview.com/2026/02/02/1132042/whats-next-for-ev-batteries-in-2026/",
+      "snippet": "The Chinese companies Yadea, JMEV, and HiNa Battery have all started producing sodium-ion batteries in limited numbers for EVs, including small, short-range cars and electric scooters that don't ..."
+    },
+    {
+      "title": "Electric vehicles: Battery technologies, charging standards, AI ...",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2590174524002290",
+      "snippet": "Electric vehicles (EVs) have gained significant attention in recent years due to their potential to reduce greenhouse gas emissions and improve energy efficiency. An EV's main source of power is its battery, which plays a crucial role in determining the vehicle's overall performance and sustainabili"
+    },
+    {
+      "title": "The Evolution of Electric Vehicle Battery Technology",
+      "url": "https://www.mobilityglobal.com/en-us/automotive-insights/blog/the-evolution-of-electric-vehicle-battery-technology",
+      "snippet": "What are EV batteries made of today? Electric vehicle battery technology reflects a combination of historical developments, innovations, and market demands."
+    },
+    {
+      "title": "Battery types and recent developments for energy storage in electric ...",
+      "url": "https://academic.oup.com/ce/article/9/6/293/8256348",
+      "snippet": "Energy storage is a major challenge in electric vehicle development due to battery technology differences. This paper provides a comprehensive review of battery technologies categorized into three generations: past, current, and future."
+    },
+    {
+      "title": "How Do Electric Vehicles Work? A Simple Guide to EV Technology, Motors ...",
+      "url": "https://www.sciencetimes.com/articles/60797/20251115/how-do-electric-vehicles-work-simple-guide-ev-technology-motors-batteries.htm",
+      "snippet": "A clear, beginner-friendly guide explaining how EVs work, covering electric vehicle technology, EV batteries, electric motors, and charging systems in 2025."
+    },
+    {
+      "title": "EV Battery Technology: What's Coming Now, Tomorrow, and the Far Future",
+      "url": "https://www.motortrend.com/news/ev-battery-technology-future-emerging",
+      "snippet": "A look at the novel chemistries, pack strategies, and battery types that will power electric vehicles in the months, years, and decades ahead."
+    }
+  ]
+}
