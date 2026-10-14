@@ -4,12 +4,16 @@ import threading
 import time
 from pathlib import Path
 
+from config import DOCX_MAX_FIGURES, DOCX_OUTPUT_DIR
 from research.web_search import search_web, format_search_results
-from research.image_search import enrich_presentation_with_images
+from research.image_search import enrich_presentation_with_images, enrich_report_with_images
 from generators.pptx_generator import PPTXContentGenerator
+from generators.docx_generator import DOCXContentGenerator
 from generators.officekit_pptx_generator import (
     generate_pptx_with_officekit,
 )
+from generators.officekit_docx_generator import generate_docx_with_officekit
+from office.officekit_checks import print_review, review_document
 from utils.perf import PERF
 # ---------------------------------------------------------
 # Paths
@@ -172,7 +176,7 @@ def render_with_officekit(presentation, topic: str):
         f"{safe_topic}.pptx"
     )
 
-    print("\nCreating PPTX with OfficeKit...")
+    print("\nCreating PPTX (Compono layout, Office-Kit validation)...")
 
     try:
 
@@ -257,13 +261,64 @@ def generate_pptx(topic: str):
     print("\nPPTX content generation successful.")
 
     # Step 6: Convert structured content to PPTX
-    print("\nNext step: convert structured content into OfficeKit PPTX.")
+    print("\nNext step: render the slides and validate them.")
     with PERF.stage("PPTX render + validation (wall)"):
         result = render_with_officekit(
             presentation,
             topic
         )
     PERF.add_time("TOTAL PPTX generation", time.perf_counter() - total_start)
+    print(PERF.summary())
+    return result
+
+
+# ---------------------------------------------------------
+# DOCX workflow
+# ---------------------------------------------------------
+
+def generate_docx(topic: str):
+    """Complete DOCX report workflow (separate from the PPTX layouts)."""
+    PERF.reset()
+    total_start = time.perf_counter()
+
+    generator = DOCXContentGenerator()
+    warm_up = threading.Thread(target=generator.warm_up, daemon=True)
+    warm_up.start()
+
+    with PERF.stage("Web search"):
+        research = collect_research(topic)
+
+    with PERF.stage("Waiting for Ollama warm-up"):
+        warm_up.join()
+
+    try:
+        print("\nGenerating DOCX content...")
+        with PERF.stage("Ollama content generation"):
+            report = generator.generate(topic, research)
+    except Exception as exc:
+        print("\nERROR: DOCX content generation failed.")
+        print(f"Reason: {exc}")
+        print(PERF.summary())
+        return None
+
+    with PERF.stage("Image search + download (wall)"):
+        enrich_report_with_images(report, topic, max_figures=DOCX_MAX_FIGURES)
+
+    safe_topic = "".join(c.lower() if c.isalnum() else "_" for c in topic).strip("_")
+    json_file = DOCX_OUTPUT_DIR / f"{safe_topic}.json"
+    json_file.write_text(json.dumps(report.model_dump(), indent=2, ensure_ascii=False),
+                         encoding="utf-8")
+    print(f"\nStructured JSON saved to:\n{json_file}")
+
+    result = None
+    with PERF.stage("DOCX render + validation (wall)"):
+        try:
+            result = generate_docx_with_officekit(report, DOCX_OUTPUT_DIR / f"{safe_topic}.docx")
+        except Exception as exc:
+            print("\nERROR: DOCX generation failed.")
+            print(f"Reason: {exc}")
+
+    PERF.add_time("TOTAL DOCX generation", time.perf_counter() - total_start)
     print(PERF.summary())
     return result
 
@@ -278,7 +333,15 @@ def main():
     parser = argparse.ArgumentParser(description="AI document generator")
     parser.add_argument("--topic", default="")
     parser.add_argument("--choice", default="")
+    parser.add_argument("--inspect", default="",
+                        help="Inspect/validate an existing .pptx or .docx with Office-Kit and exit")
     args = parser.parse_args()
+
+    if args.inspect:
+        report = review_document(Path(args.inspect))
+        print_review(report)
+        print(json.dumps(report, indent=2, default=str))
+        return
 
     print("======================================")
     print("     AI DOCUMENT GENERATOR")
@@ -309,14 +372,7 @@ def main():
 
     elif choice == "2":
 
-        print(
-            "\nDOCX generation is not connected yet."
-        )
-
-        print(
-            "We will connect the DOCX generator "
-            "after the PPTX pipeline is working."
-        )
+        generate_docx(topic)
 
     else:
 

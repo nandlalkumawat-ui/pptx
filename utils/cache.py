@@ -38,5 +38,6 @@ def cache_set(namespace: str, key: str, value: Any) -> None:
     try:
         temp.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
         temp.replace(path)
-    except (OSError, TypeError, ValueError):
-        pass
+    except (OSError, TypeError, ValueError) as exc:
+        # A failed cache write only costs speed on the next run.
+        print(f"[warning] cache write failed ({namespace}): {exc}")

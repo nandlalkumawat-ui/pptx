@@ -135,6 +135,14 @@ class Presentation(BaseModel):
 # DOCX SECTION SCHEMA
 # ============================================================
 
+class Subsection(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    title: str
+    paragraphs: List[str] = Field(default_factory=list)
+    bullets: List[str] = Field(default_factory=list)
+
+
 class Section(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
@@ -142,6 +150,16 @@ class Section(BaseModel):
     paragraphs: List[str] = Field(default_factory=list)
     bullets: List[str] = Field(default_factory=list)
     table: Optional[TableData] = None
+    table_caption: str = ""
+    subsections: List[Subsection] = Field(default_factory=list)
+
+    # Optional figure (filled by the image search step)
+    image_query: str = ""
+    image_path: str = ""
+    image_caption: str = ""
+    image_url: str = ""
+    image_source: str = ""
+    source_urls: List[str] = Field(default_factory=list)
 
 
 # ============================================================

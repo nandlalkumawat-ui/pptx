@@ -450,3 +450,30 @@ def enrich_presentation_with_images(presentation: Any, query_hint: str = "") -> 
         list(pool.map(process, range(len(slides)), slides))
 
     return presentation
+
+
+_IMAGE_FIELDS = ("image_path", "image_url", "image_source", "image_caption", "source_urls")
+
+
+def enrich_report_with_images(report: Any, query_hint: str = "", max_figures: int = 3) -> Any:
+    """
+    Attach figures to the first ``max_figures`` report sections, reusing the
+    slide image pipeline (same search, cache, dedupe and attribution).
+    """
+    sections = list(_slide_get(report, "sections", []) or [])[:max_figures]
+    proxies = [
+        {
+            "title": _slide_get(section, "title", ""),
+            "image_query": _slide_get(section, "image_query", ""),
+            "layout": "content",
+            "table": None,
+            "source_urls": list(_slide_get(section, "source_urls", []) or []),
+        }
+        for section in sections
+    ]
+    enrich_presentation_with_images({"slides": proxies}, query_hint)
+    for section, proxy in zip(sections, proxies):
+        for key in _IMAGE_FIELDS:
+            if proxy.get(key):
+                _slide_set(section, key, proxy[key])
+    return report

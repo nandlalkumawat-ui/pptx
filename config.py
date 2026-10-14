@@ -35,6 +35,10 @@ MAX_SEARCH_RESULTS = 8
 CACHE_DIR = OUTPUT_DIR / "cache"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 SEARCH_CACHE_TTL_SECONDS = 7 * 24 * 3600
+WEB_SEARCH_CACHE_TTL_SECONDS = 24 * 3600
+# Identical LLM requests (same model, prompt, schema, options) are answered
+# from disk instead of re-running a multi-minute CPU generation. 0 disables.
+LLM_CACHE_TTL_SECONDS = 24 * 3600
 
 
 # Images
@@ -43,3 +47,23 @@ IMAGE_DOWNLOAD_TIMEOUT = (5, 12)  # (connect, read) seconds
 IMAGE_MAX_BYTES = 15 * 1024 * 1024
 IMAGE_MAX_EDGE_PX = 1600      # downscale before embedding
 IMAGE_MIN_EDGE_PX = 400       # reject thumbnails / icons
+
+
+# PPTX
+# "compono"     -> Compono layout engine (office/compono_pptx.py), falls back
+#                  to the python-pptx renderer if Compono fails.
+# "python-pptx" -> the original renderer in office/officekit_utils.py only.
+PPTX_ENGINE = "compono"
+
+# Shared brand palette (PPTX + DOCX). The accent is dark enough for white
+# text on top of it (WCAG AA 4.5:1).
+BRAND_PRIMARY = "#0F2A44"
+BRAND_ACCENT = "#0B7A76"
+BRAND_FONT = "Calibri"
+
+
+# DOCX
+DOCX_PAGE_SIZE = "A4"          # "A4" or "Letter"
+DOCX_MARGIN_IN = 1.0
+DOCX_BODY_FONT_SIZE = 11
+DOCX_MAX_FIGURES = 3           # images searched/embedded per report

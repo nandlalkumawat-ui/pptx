@@ -1,11 +1,14 @@
-officekit
+# Office-Kit is not on PyPI under this name; install the pinned GitHub commit.
+officekit @ https://github.com/dream-zjk/officekit/archive/fe397bd28c5711c6372e939e661041c2354b8658.zip
+compono==0.5.0
+python-docx>=1.2.0
 ollama
 pydantic
 python-dotenv
 requests
 ddgs
-python-pptx 
-pillow 
+python-pptx
+pillow
 arxiv
 pymupdf
 PyYAML

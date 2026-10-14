@@ -4,9 +4,10 @@ Professional PowerPoint Generator.
 
 Pipeline:
 1. Convert Pydantic presentation data into a dictionary.
-2. Render formatted slides using python-pptx.
-3. Inspect the generated PPTX using OfficeKit.
-4. Validate the PPTX using OfficeKit.
+2. Render slides with Compono (config.PPTX_ENGINE = "compono"), falling
+   back to the python-pptx renderer if Compono fails.
+3. Inspect and validate the PPTX with Office-Kit.
+4. Check layout (off-slide shapes, overlaps, tiny fonts) and images.
 5. Return the generated file path.
 """
 
@@ -17,11 +18,9 @@ from typing import Any
 from pptx import Presentation as PptPresentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
-from office.officekit_utils import (
-    render_rich_pptx,
-    inspect_document,
-    validate_document,
-)
+from config import PPTX_ENGINE
+from office.officekit_checks import print_review, review_document
+from office.officekit_utils import render_rich_pptx
 from utils.perf import PERF
 
 
@@ -53,7 +52,8 @@ def _count_picture_shapes(pptx_file: Path) -> int:
 # Content shapes that must never overlap each other.
 _CONTENT_SHAPES = {
     "Slide Title", "Slide Subtitle", "Body Paragraph", "Bullet List",
-    "Content Table", "Slide Image", "Image Caption",
+    "Content Table", "Slide Image", "Image Caption", "Card", "Chart",
+    "Process Step",
 }
 
 
@@ -152,17 +152,29 @@ def generate_pptx_with_officekit(
 
     # --------------------------------------------------------
     # STEP 1: Render the presentation.
-    # Uses python-pptx for formatting, text, tables and images.
+    # Compono lays out the slides; python-pptx renderer is the fallback.
     # --------------------------------------------------------
 
-    print("\n[1/3] Rendering PowerPoint slides...")
+    print(f"\n[1/3] Rendering PowerPoint slides (engine: {PPTX_ENGINE})...")
 
     try:
-        with PERF.stage("PPTX slide building + save"):
-            result = render_rich_pptx(
-                output_file=output_file,
-                presentation_data=data,
-            )
+        result = None
+        if PPTX_ENGINE == "compono":
+            try:
+                from office.compono_pptx import render_compono_pptx
+
+                result = render_compono_pptx(output_file, data)
+                PERF.incr("rendered with compono")
+            except Exception as exc:
+                print(f"[warning] Compono rendering failed, using python-pptx renderer: {exc!r}")
+                PERF.incr("compono fallbacks")
+
+        if result is None:
+            with PERF.stage("PPTX slide building + save (python-pptx)"):
+                result = render_rich_pptx(
+                    output_file=output_file,
+                    presentation_data=data,
+                )
 
         if result is not None:
             output_file = Path(result)
@@ -180,49 +192,30 @@ def generate_pptx_with_officekit(
         ) from exc
 
     # --------------------------------------------------------
-    # STEP 2: Inspect the generated presentation with OfficeKit.
+    # STEP 2-3: Inspect + validate with Office-Kit (open check, stats,
+    # issues, every slide title present, placeholder repair if needed).
     # --------------------------------------------------------
 
-    print("\n[2/3] Inspecting PPTX with OfficeKit...")
+    print("\n[2/3] Inspecting and validating PPTX with Office-Kit...")
 
     validation_started = time.perf_counter()
 
-    try:
-        inspection = inspect_document(output_file)
+    expected_titles = []
+    for raw_slide in slides:
+        slide_dict = raw_slide if isinstance(raw_slide, dict) else raw_slide.model_dump()
+        expected_titles.append(str(slide_dict.get("title") or ""))
 
-        print("OfficeKit inspection completed.")
+    with PERF.stage("Office-Kit inspect + validate"):
+        review = review_document(
+            output_file,
+            expected_titles=expected_titles,
+            placeholder_values={"title": title},
+        )
+    print_review(review)
+    if review["issues"] and not review["info"]:
+        raise RuntimeError(f"Office-Kit cannot open the generated PPTX: {review['issues']}")
 
-        if inspection:
-            print(f"Inspection returned document information: {inspection}")
-
-    except Exception as exc:
-        print(f"OfficeKit inspection could not be completed: {exc}")
-
-    # --------------------------------------------------------
-    # STEP 3: Validate the generated presentation with OfficeKit.
-    # --------------------------------------------------------
-
-    print("\n[3/3] Validating PPTX with OfficeKit...")
-
-    try:
-        validation = validate_document(output_file)
-
-        if validation.get("valid"):
-            print("OfficeKit validation passed.")
-
-            if validation.get("stdout"):
-                print(validation["stdout"])
-        else:
-            print("OfficeKit validation reported an issue.")
-
-            if validation.get("stdout"):
-                print(validation["stdout"])
-
-            if validation.get("stderr"):
-                print(validation["stderr"])
-
-    except Exception as exc:
-        print(f"OfficeKit validation could not be completed: {exc}")
+    print("\n[3/3] Checking layout and embedded images...")
 
     # --------------------------------------------------------
     # FINAL IMAGE VERIFICATION

@@ -4,7 +4,14 @@ from typing import Any
 
 import ollama
 
-from config import OLLAMA_HOST, OLLAMA_KEEP_ALIVE, OLLAMA_MODEL, OLLAMA_NUM_CTX
+from config import (
+    LLM_CACHE_TTL_SECONDS,
+    OLLAMA_HOST,
+    OLLAMA_KEEP_ALIVE,
+    OLLAMA_MODEL,
+    OLLAMA_NUM_CTX,
+)
+from utils.cache import cache_get, cache_set
 from utils.perf import PERF
 
 
@@ -112,16 +119,32 @@ class OllamaClient:
         prompt: str,
         schema: dict[str, Any] | None = None,
         options: dict | None = None,
+        use_cache: bool = True,
     ):
         """
         Generate JSON. When ``schema`` is given, Ollama constrains decoding
         to that JSON schema (structured output), otherwise plain JSON mode.
+
+        Identical requests are served from the disk cache for
+        LLM_CACHE_TTL_SECONDS (use_cache=False forces a new generation,
+        e.g. when retrying after a bad answer).
         """
 
         print(
             f"\nGenerating JSON with Ollama: "
             f"{self.model}"
         )
+
+        cache_key = json.dumps(
+            [self.model, prompt, schema, self._options(options)], sort_keys=True
+        )
+        if use_cache and LLM_CACHE_TTL_SECONDS > 0:
+            cached = cache_get("llm", cache_key, ttl=LLM_CACHE_TTL_SECONDS)
+            if cached is not None:
+                PERF.incr("llm cache hits")
+                print("[cache] Reusing identical earlier LLM answer.")
+                return cached
+
         started = time.perf_counter()
 
         response = self.client.chat(
@@ -143,4 +166,7 @@ class OllamaClient:
 
         content = response["message"]["content"]
 
-        return json.loads(content)
+        data = json.loads(content)
+        if LLM_CACHE_TTL_SECONDS > 0:
+            cache_set("llm", cache_key, data)
+        return data
