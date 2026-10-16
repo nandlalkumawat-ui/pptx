@@ -1,0 +1,580 @@
+{
+  "title": "The Role of Artificial Intelligence in Early Disease Detection",
+  "subtitle": "Transforming Healthcare with AI-Powered Diagnostics",
+  "author": "",
+  "slides": [
+    {
+      "slide_number": 1,
+      "title": "The Role of Artificial Intelligence in Early Disease Detection",
+      "subtitle": "Transforming Healthcare with AI-Powered Diagnostics",
+      "layout": "title",
+      "paragraphs": [],
+      "bullets": [],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A healthcare professional analyzing medical data on a computer screen",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/311b327e1bed61bda3540ada158c9a22a6d3dd70_1600.jpg",
+      "image_caption": "Image: statusneo.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://statusneo.com/wp-content/uploads/2025/03/DALL·E-2025-03-13-12.30.26-A-futuristic-medical-scene-showcasing-early-disease-detection-technology.-A-doctor-analyzes-holographic-medical-data-with-AI-powered-diagnostics-a-sm.webp",
+      "image_source": "statusneo.com",
+      "source_urls": [
+        "https://statusneo.com/tech-for-early-disease-detection-advancements/"
+      ],
+      "citations": []
+    },
+    {
+      "slide_number": 2,
+      "title": "Introduction",
+      "subtitle": "The Impact of AI in Early Disease Detection",
+      "layout": "content",
+      "paragraphs": [
+        "Artificial Intelligence (AI) is revolutionizing the field of healthcare by enabling early disease detection, which can significantly improve treatment outcomes and patient quality of life."
+      ],
+      "bullets": [
+        "Early disease detection is critical for improving treatment outcomes",
+        "AI-powered diagnostics can reduce healthcare costs",
+        "AI can enhance patient quality of life"
+      ],
+      "table": null,
+      "notes": "Cited sources:\n[1] https://www.ijsr.net/getabstract.php?paperid=SR26620171630\n[2] https://researchcorridor.org/mjh/article/view/52",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A doctor and a patient discussing their medical condition",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/89af9aa73328a8096e4d0e8404208e7e0b34aeb4_1600.jpg",
+      "image_caption": "Image: scribd.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://imgv2-2-f.scribdassets.com/img/document/821350635/original/1f327b300a/1?v=1",
+      "image_source": "scribd.com",
+      "source_urls": [
+        "https://www.scribd.com/presentation/821350635/Early-Disease-Detection-Harnessing-AI-and-Medical-Imaging"
+      ],
+      "citations": [
+        1,
+        2
+      ]
+    },
+    {
+      "slide_number": 3,
+      "title": "Key Concepts",
+      "subtitle": "Understanding AI in Early Disease Detection",
+      "layout": "comparison",
+      "paragraphs": [],
+      "bullets": [
+        "Deep Learning: A subset of machine learning that enables AI systems to learn from data",
+        "Natural Language Processing (NLP): Enabling AI systems to understand and analyze medical texts",
+        "Computer Vision: Allowing AI systems to analyze medical images"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the concept of deep learning",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    },
+    {
+      "slide_number": 4,
+      "title": "Current Situation",
+      "subtitle": "AI Applications in Early Disease Detection",
+      "layout": "data",
+      "paragraphs": [
+        "According to a study, AI systems have been shown to detect diseases such as cancer and diabetic retinopathy with high accuracy."
+      ],
+      "bullets": [
+        "Cancer detection: AI-powered algorithms can analyze medical images and patient data to identify cancerous tissues",
+        "Diabetic Retinopathy detection: AI systems can analyze retinal scans to detect early signs of the disease",
+        "Mental health issues: AI-powered chatbots can analyze patient conversations to detect mental health issues"
+      ],
+      "table": {
+        "headers": [
+          "Benefits",
+          "Challenges"
+        ],
+        "rows": [
+          [
+            "Improved accuracy in disease detection",
+            "High cost of implementing AI systems"
+          ],
+          [
+            "Enhanced patient care through early intervention",
+            "Risk of bias in AI algorithms"
+          ],
+          [
+            "Reduced healthcare costs through early detection",
+            "Limited availability of AI expertise"
+          ]
+        ]
+      },
+      "notes": "Cited sources:\n[3] https://gjeac.com/index.php/GJEAIC/article/view/1\n[4] https://www.researchgate.net/profile/Noman-Abid/publication/388731133_Global_Journal_of_Emerging_AI_and_Computing_The_Role_of_Artificial_Intelligence_in_Early_Disease_Detection_Current_Applications_and_Future_Prospects/links/67a3fe62645ef274a47131b0/Global-Journal-of-Emerging-AI-and-Computing-The-Role-of-Artificial-Intelligence-in-Early-Disease-Detection-Current-Applications-and-Future-Prospects.pdf",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A graph illustrating the increasing adoption of AI in healthcare",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        3,
+        4
+      ]
+    },
+    {
+      "slide_number": 5,
+      "title": "Applications",
+      "subtitle": "Industry-Specific Use Cases for AI in Early Disease Detection",
+      "layout": "comparison",
+      "paragraphs": [],
+      "bullets": [
+        "Cancer diagnosis: AI-powered algorithms can analyze medical images and patient data to identify cancerous tissues",
+        "Cardiovascular disease detection: AI systems can analyze ECG and echocardiogram data to detect early signs of the disease",
+        "Ophthalmic disease detection: AI-powered algorithms can analyze retinal scans to detect early signs of diseases such as diabetic retinopathy"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the concept of AI in healthcare",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    },
+    {
+      "slide_number": 6,
+      "title": "Benefits and Challenges",
+      "subtitle": "The Pros and Cons of AI-Powered Diagnostics",
+      "layout": "data",
+      "paragraphs": [
+        "According to a study, AI-powered diagnostics can reduce healthcare costs and improve treatment outcomes."
+      ],
+      "bullets": [
+        "Improved accuracy in disease detection",
+        "Enhanced patient care through early intervention",
+        "Reduced healthcare costs through early detection"
+      ],
+      "table": {
+        "headers": [
+          "Benefits",
+          "Challenges"
+        ],
+        "rows": [
+          [
+            "Improved accuracy in disease detection",
+            "High cost of implementing AI systems"
+          ],
+          [
+            "Enhanced patient care through early intervention",
+            "Risk of bias in AI algorithms"
+          ]
+        ]
+      },
+      "notes": "Cited sources:\n[5] https://www.neliti.com/publications/592479/the-role-of-artificial-intelligence-in-early-disease-detection-current-applicati",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A graph illustrating the benefits of AI-powered diagnostics",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        5
+      ]
+    },
+    {
+      "slide_number": 7,
+      "title": "Future Scope",
+      "subtitle": "Emerging Trends and Developments in AI-Powered Diagnostics",
+      "layout": "process",
+      "paragraphs": [
+        "The use of AI in early disease detection is expected to continue growing, with a projected increase in the adoption of AI-powered diagnostics by 2025."
+      ],
+      "bullets": [
+        "Expected: Increased use of deep learning algorithms for image analysis",
+        "Projected: Improved accuracy in disease detection through the use of natural language processing",
+        "Forecasted: Enhanced patient care through early intervention and reduced healthcare costs"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the future scope of AI-powered diagnostics",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    },
+    {
+      "slide_number": 8,
+      "title": "Applications in Industries",
+      "subtitle": "Real-World Use Cases for AI-Powered Diagnostics",
+      "layout": "comparison",
+      "paragraphs": [],
+      "bullets": [
+        "Cancer diagnosis: AI-powered algorithms can analyze medical images and patient data to identify cancerous tissues",
+        "Cardiovascular disease detection: AI systems can analyze ECG and echocardiogram data to detect early signs of the disease",
+        "Ophthalmic disease detection: AI-powered algorithms can analyze retinal scans to detect early signs of diseases such as diabetic retinopathy"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the concept of AI in healthcare",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    },
+    {
+      "slide_number": 9,
+      "title": "Benefits and Challenges",
+      "subtitle": "The Pros and Cons of AI-Powered Diagnostics",
+      "layout": "data",
+      "paragraphs": [
+        "According to a study, AI-powered diagnostics can reduce healthcare costs and improve treatment outcomes."
+      ],
+      "bullets": [
+        "Improved accuracy in disease detection",
+        "Enhanced patient care through early intervention",
+        "Reduced healthcare costs through early detection"
+      ],
+      "table": {
+        "headers": [
+          "Benefits",
+          "Challenges"
+        ],
+        "rows": [
+          [
+            "Improved accuracy in disease detection",
+            "High cost of implementing AI systems"
+          ],
+          [
+            "Enhanced patient care through early intervention",
+            "Risk of bias in AI algorithms"
+          ]
+        ]
+      },
+      "notes": "Cited sources:\n[5] https://www.neliti.com/publications/592479/the-role-of-artificial-intelligence-in-early-disease-detection-current-applicati",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A graph illustrating the benefits of AI-powered diagnostics",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        5
+      ]
+    },
+    {
+      "slide_number": 10,
+      "title": "Future Scope",
+      "subtitle": "Emerging Trends and Developments in AI-Powered Diagnostics",
+      "layout": "process",
+      "paragraphs": [
+        "The use of AI in early disease detection is expected to continue growing, with a projected increase in the adoption of AI-powered diagnostics by 2025."
+      ],
+      "bullets": [
+        "Expected: Increased use of deep learning algorithms for image analysis",
+        "Projected: Improved accuracy in disease detection through the use of natural language processing",
+        "Forecasted: Enhanced patient care through early intervention and reduced healthcare costs"
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the future scope of AI-powered diagnostics",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Role of Artificial Intelligence in Early Disease Detection ...",
+      "url": "https://www.ijsr.net/getabstract.php?paperid=SR26620171630",
+      "snippet": "This paper reviews the role of AI in early disease detection, surveying the principal techniques, the typical detection pipeline, and applications across cancer, cardiovascular, ophthalmic and neurological disorders."
+    },
+    {
+      "title": "The Role of Artificial Intelligence in Early Disease Detection ...",
+      "url": "https://researchcorridor.org/mjh/article/view/52",
+      "snippet": "Abstract Artificial Intelligence (AI) is fundamentally transforming early disease detection by emulating human cognitive processes and leveraging vast datasets and advanced analytical techniques. This review explores the current state of AI applications in healthcare, focusing on its role in early d"
+    },
+    {
+      "title": "The Role of Artificial Intelligence in Early Disease Detection: Current ...",
+      "url": "https://gjeac.com/index.php/GJEAIC/article/view/1",
+      "snippet": "AI systems employ large data sets, including medical images, patient history, and continuous real-time tracking, to diagnose diseases at early stages and thus learn how to act and bring about a healthier change. This paper focuses on the current uses of AI in early disease detection, its efficiency,"
+    },
+    {
+      "title": "PDF The Role of Artificial Intelligence in Early Disease Detection: Current ...",
+      "url": "https://www.researchgate.net/profile/Noman-Abid/publication/388731133_Global_Journal_of_Emerging_AI_and_Computing_The_Role_of_Artificial_Intelligence_in_Early_Disease_Detection_Current_Applications_and_Future_Prospects/links/67a3fe62645ef274a47131b0/Global-Journal-of-Emerging-AI-and-Computing-The-Role-of-Artificial-Intelligence-in-Early-Disease-Detection-Current-Applications-and-Future-Prospects.pdf",
+      "snippet": "ABSTRACT Artificial intelligence (AI) has evolved as an innovative technology in the field of health care and the diagnosis of diseases at an early stage."
+    },
+    {
+      "title": "The Role of Artificial Intelligence in Early Disease Detection ... - Neliti",
+      "url": "https://www.neliti.com/publications/592479/the-role-of-artificial-intelligence-in-early-disease-detection-current-applicati",
+      "snippet": "Artificial intelligence (AI) has evolved as an innovative technology in the field of health care and the diagnosis of diseases at an early stage. AI systems employ large data sets, including medical images, patient history, and continuous real-time tracking, to diagnose diseases at early stages and "
+    },
+    {
+      "title": "PDF The Role of AI in Early Disease Detection and Diagnostics.",
+      "url": "https://www.alliedacademies.org/articles/the-role-of-ai-in-early-disease-detection-and-diagnostics.pdf",
+      "snippet": "Introduction Artificial intelligence (AI) is rapidly transforming healthcare by enhancing early disease detection and diagnostics. Its ability to analyze vast amounts of data, identify patterns, and learn from new information makes AI a valuable tool for identifying diseases at their earliest stages"
+    },
+    {
+      "title": "Early Detection of Diseases Using AI: An Overview of ... - ResearchGate",
+      "url": "https://www.researchgate.net/publication/392959781_Early_Detection_of_Diseases_Using_AI_An_Overview_of_Emerging_Tools_and_Techniques",
+      "snippet": "Early detection of diseases is critical for improving treatment outcomes, reducing healthcare costs, and enhancing patient quality of life. Artificial Intelligence (AI) has emerged as a powerful ..."
+    },
+    {
+      "title": "PDF The Role of Artificial Intelligence in Early Disease Diagnosis",
+      "url": "https://rojournals.org/wp-content/uploads/2024/09/ROJBAS-33-P6.pdf",
+      "snippet": "This study examines the use of artificial intelligence (AI) in the early detection of diseases, specifically focusing on its utilisation in identifying diseases such as cancer, diabetic retinopathy, and mental health issues."
+    }
+  ]
+}

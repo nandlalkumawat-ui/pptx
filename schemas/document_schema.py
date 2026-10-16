@@ -117,6 +117,10 @@ class Slide(BaseModel):
 
     source_urls: List[str] = Field(default_factory=list)
 
+    # Numbers [n] of the research sources (Presentation.sources, 1-based)
+    # that support this slide; shown as "Sources [n]" in the footer.
+    citations: List[int] = Field(default_factory=list)
+
 
 # ============================================================
 # PPTX PRESENTATION SCHEMA
@@ -127,6 +131,7 @@ class Presentation(BaseModel):
 
     title: str
     subtitle: str = ""
+    author: str = ""
     slides: List[Slide] = Field(default_factory=list)
     sources: List[Source] = Field(default_factory=list)
 

@@ -40,19 +40,33 @@ SLIDE_SCHEMA = {
             ]
         },
         "image_query": {"type": "string", "minLength": 8},
+        # Numbers [n] of the research items that support this slide.
+        "sources": {"type": "array", "items": {"type": "integer"}, "maxItems": 3},
     },
-    "required": ["title", "subtitle", "layout", "paragraphs", "bullets", "table", "image_query"],
+    "required": ["title", "subtitle", "layout", "paragraphs", "bullets", "table",
+                 "image_query", "sources"],
 }
 
-PRESENTATION_SCHEMA = {
-    "type": "object",
-    "properties": {
-        "title": {"type": "string"},
-        "subtitle": {"type": "string"},
-        "slides": {"type": "array", "items": SLIDE_SCHEMA, "minItems": 8, "maxItems": 10},
-    },
-    "required": ["title", "subtitle", "slides"],
-}
+DEFAULT_SLIDE_COUNT = 8
+MIN_SLIDE_COUNT = 3
+MAX_SLIDE_COUNT = 15
+
+
+def presentation_schema(slide_count: int = DEFAULT_SLIDE_COUNT) -> dict:
+    """Ollama output schema; the grammar enforces the slide count."""
+    return {
+        "type": "object",
+        "properties": {
+            "title": {"type": "string"},
+            "subtitle": {"type": "string"},
+            "slides": {"type": "array", "items": SLIDE_SCHEMA,
+                       "minItems": slide_count, "maxItems": slide_count},
+        },
+        "required": ["title", "subtitle", "slides"],
+    }
+
+
+PRESENTATION_SCHEMA = presentation_schema()
 
 
 def _sources_from_research(research: str) -> list[Source]:
@@ -77,26 +91,49 @@ def _sources_from_research(research: str) -> list[Source]:
 # Static instructions come FIRST and never contain the topic, so Ollama can
 # reuse their KV cache across runs (prompt processing is ~10-15 tok/s on
 # CPU, so every cached token matters). See PPTXContentGenerator.warm_up().
-INSTRUCTIONS = """You are an expert presentation writer. Write an 8-10 slide presentation as JSON, using the topic and research material given at the end.
+INSTRUCTIONS = """You are an expert presentation writer. Write a presentation as JSON with exactly the number of slides requested at the end, using the topic and research material given there.
+
+Structure for 8 slides:
+1. Title (layout "title"): a strong title and a one-line subtitle. Its image_query asks for a wide photograph with no text or diagram.
+2. Introduction ("content"): what the topic is, its background, and why it matters in the real world.
+3. Key Concepts ("comparison"): the essential concepts, components or principles, one per bullet.
+4. Current Situation ("data" if the research has real figures, otherwise "content"): current trends, facts and examples from the research, with the year when the research gives one.
+5. Applications ("comparison"): practical uses in the industries that really fit this topic.
+6. Benefits and Challenges ("data"): a table with headers ["Benefits", "Challenges"] and 3-4 rows; EVERY row names one benefit AND one challenge, no empty cells.
+7. Future Scope ("process"): emerging trends and likely developments in order; mark forecasts as forecasts ("expected", "projected").
+8. Conclusion (layout "conclusion"): 3-4 key takeaways and one recommendation as bullets.
+For fewer slides, merge neighbouring sections; for more, split the largest sections. The title slide is always first and the conclusion always last.
 
 Rules:
-- Use the research material as the factual basis; do not invent facts or numbers.
-- Slide 1: layout "title"; a strong presentation title and a one-line subtitle; no bullets or paragraphs.
-- Slide 2: an introduction / overview of what the deck covers.
-- Middle slides: one clear idea per slide, explained progressively.
-- Last slide: layout "conclusion" with 3-4 key takeaways as bullets.
-- Each content slide: a specific title, a short subtitle, ONE paragraph of 2-3 sentences (max 60 words) and 3-5 bullets.
-- Bullets are short (max 18 words). Start a bullet with a key term followed by a colon when it helps, e.g. "Solid-state cells: higher energy density with lower fire risk".
+- Use the research material as the factual basis; do not invent facts, numbers, dates or names.
+- Every slide except the title: a specific title, a short subtitle, ONE paragraph of 2-3 full sentences (40-60 words) and 3 to 5 bullets. Never fewer than 3 bullets.
+- Each bullet is one complete, specific point of 8-18 words. Start it with a short label and a colon, then explain, in the style of "Label: a specific fact or reason about the topic"; never copy this pattern literally or write placeholder text.
 - Do not repeat the paragraph in the bullets.
-- layout values: "content" (explanation), "process" (steps or a timeline; bullets in order), "comparison" (pros/cons, options), "data" (slide built around a table), "conclusion".
-- Use a "data" slide with a table only when the research contains real figures. Every table row has exactly as many cells as headers, max 6 rows. Otherwise "table": null.
-- image_query: 3-7 words describing a concrete photo that illustrates THIS slide's subject (an object, place, technology or process), specific to the topic. Different for every slide. Never empty.
+- layout values: "content" (explanation), "process" (steps or a timeline; bullets in order), "comparison" (cards for concepts, options or uses), "data" (slide built around a table), "conclusion".
+- Tables: only with real figures from the research, or for the Benefits and Challenges slide. Every row has exactly as many cells as headers, max 6 rows. Otherwise "table": null.
+- sources: the numbers [n] of the research items that support the facts on this slide (max 3); [] when none apply. Never cite a number that is not in the research list.
+- image_query: 3-7 words describing a concrete photo or diagram that illustrates THIS slide's subject, specific to the topic. Different for every slide. Never empty.
 """
 
 _MARKDOWN_TABLE = re.compile(r"^\s*\|.*\|\s*$", re.M)
-_SCHEMA_KEYS = set(SLIDE_SCHEMA["properties"]) | {"slides", "sources", "null"}
-_REFERENCE_TITLE = re.compile(r"^\s*(sources?|references?|bibliography|further reading)\b", re.I)
 _NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
+# Model output can echo schema field names as bullet text; strip those and
+# drop the renderer-generated source/reference slide title.
+_LITERAL_LABEL = re.compile(r"^\s*label\s*:\s*", re.IGNORECASE)
+
+_SCHEMA_KEYS = {
+    "title",
+    "subtitle",
+    "layout",
+    "paragraphs",
+    "bullets",
+    "table",
+    "image_query",
+}
+_REFERENCE_TITLE = re.compile(
+    r"^(?:sources?\s*(?:&|and)\s*image credits|references?|source notes?)$",
+    re.I,
+)
 
 
 def _table_supported_by_research(table: dict, research: str) -> bool:
@@ -124,7 +161,13 @@ class PPTXContentGenerator:
         """
         self.llm.warm_up(prefix=INSTRUCTIONS)
 
-    def generate(self, topic: str, research: str) -> Presentation:
+    def generate(self, topic: str, research: str, slide_count: int = DEFAULT_SLIDE_COUNT,
+                 author: str = "") -> Presentation:
+
+        if not MIN_SLIDE_COUNT <= slide_count <= MAX_SLIDE_COUNT:
+            raise ValueError(
+                f"Slide count must be between {MIN_SLIDE_COUNT} and {MAX_SLIDE_COUNT}, got {slide_count}."
+            )
 
         sources = _sources_from_research(research)
         # The model only needs titles + snippets; URLs are dropped from the
@@ -134,8 +177,11 @@ class PPTXContentGenerator:
             if sources else research
         )
 
+        # The slide count stays out of INSTRUCTIONS so the cached prefix is
+        # the same for every request.
         prompt = f"""{INSTRUCTIONS}
 Topic: {topic}
+Number of slides: {slide_count}
 
 Research material:
 {prompt_research}
@@ -146,13 +192,14 @@ Research material:
             try:
                 data = self.llm.generate_json(
                     prompt,
-                    schema=PRESENTATION_SCHEMA,
-                    options={"temperature": 0.3, "num_predict": 4096},
+                    schema=presentation_schema(slide_count),
+                    # ~450 tokens per slide; 4096 was sized for 8-10 slides.
+                    options={"temperature": 0.3, "num_predict": max(4096, 450 * slide_count)},
                     # A retry must not get the same (bad) cached answer.
                     use_cache=attempt == 0,
                 )
                 presentation = Presentation.model_validate(
-                    self._normalize(data, topic, research)
+                    self._normalize(data, topic, research, len(sources))
                 )
                 if len(presentation.slides) >= 3:
                     break
@@ -167,11 +214,22 @@ Research material:
 
         if not presentation.sources:
             presentation.sources = sources
+        presentation.author = author.strip()
+
+        # Cited URLs go into the speaker notes; the number itself is shown
+        # in the slide footer and matches the references slide.
+        for slide in presentation.slides:
+            cited = [f"[{n}] {presentation.sources[n - 1].url}" for n in slide.citations
+                     if n <= len(presentation.sources)]
+            if cited:
+                slide.notes = "\n\n".join(
+                    part for part in (slide.notes, "Cited sources:\n" + "\n".join(cited)) if part
+                )
 
         return presentation
 
     @staticmethod
-    def _normalize(data: dict, topic: str = "", research: str = "") -> dict:
+    def _normalize(data: dict, topic: str = "", research: str = "", source_count: int = 0) -> dict:
         """
         Repair structural slips of small models so validation does not fail
         and the deck has a sensible order.
@@ -208,6 +266,12 @@ Research material:
                     row = [str(cell) for cell in row[: len(headers)]]
                     row += [""] * (len(headers) - len(row))
                     rows.append(row)
+                # Drop columns the model left empty (e.g. "Challenges").
+                keep = [i for i in range(len(headers)) if any(row[i].strip() for row in rows)]
+                if len(keep) < 2:
+                    rows = []
+                headers = [headers[i] for i in keep]
+                rows = [[row[i] for i in keep] for row in rows]
                 slide["table"] = {"headers": headers, "rows": rows} if rows else None
             else:
                 slide["table"] = None
@@ -224,6 +288,15 @@ Research material:
 
             # Small models sometimes echo schema field names as bullets.
             slide["bullets"] = [b for b in slide["bullets"] if b.strip().lower() not in _SCHEMA_KEYS]
+            # ...or copy the prompt's literal "Label:" example prefix.
+            slide["bullets"] = [b for b in (_LITERAL_LABEL.sub("", b).strip() for b in slide["bullets"]) if b]
+
+            # Only citation numbers that exist in the research list.
+            cited = []
+            for number in slide.get("sources") or []:
+                if isinstance(number, int) and 1 <= number <= source_count and number not in cited:
+                    cited.append(number)
+            slide["citations"] = cited
 
         # The renderer builds a real "Sources & Image Credits" slide from the
         # search results, so model-written source/reference slides (which
@@ -238,6 +311,13 @@ Research material:
             slide for slide in slides
             if slide["layout"] == "title" or slide["bullets"] or slide["paragraphs"] or slide["table"]
         ]
+
+        # The schema grammar forces bullets on every slide, including the
+        # title slide; a title slide shows none, so drop them there.
+        if slides and slides[0]["layout"] == "title" and not slides[0]["table"]:
+            slides[0]["bullets"] = []
+            slides[0]["paragraphs"] = []
+            slides[0]["citations"] = []
 
         # Slide 1 must be a real title slide for the whole deck. If the model
         # used it for content, keep that content and add a title slide.

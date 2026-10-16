@@ -50,10 +50,14 @@ IMAGE_MIN_EDGE_PX = 400       # reject thumbnails / icons
 
 
 # PPTX
-# "compono"     -> Compono layout engine (office/compono_pptx.py), falls back
-#                  to the python-pptx renderer if Compono fails.
+# Default engine when none is picked in the terminal menu / --engine.
+# "compono"     -> Compono layout + render only (office/compono_pptx.py).
 # "python-pptx" -> the original renderer in office/officekit_utils.py only.
-PPTX_ENGINE = "compono"
+# "both"        -> Compono layout + render, then a python-pptx brand pass on
+#                  the same file.
+# Only this default falls back to the python-pptx renderer if Compono fails;
+# an engine picked explicitly reports the failure instead.
+PPTX_ENGINE = "both"
 
 # Shared brand palette (PPTX + DOCX). The accent is dark enough for white
 # text on top of it (WCAG AA 4.5:1).

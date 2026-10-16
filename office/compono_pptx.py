@@ -41,6 +41,7 @@ from office.officekit_utils import (
     _choose_layout,
     _references_slide,
     _short_url,
+    citation_label,
     estimate_text_height,
     fit_font_size,
     to_dict,
@@ -145,6 +146,8 @@ def _plan(presentation_data: dict) -> list[dict]:
             "image_path": image_path,
             "image_caption": caption,
             "notes": _notes(slide),
+            "citation": citation_label(slide),
+            "author": str(presentation_data.get("author") or "") if index == 1 else "",
         })
 
     references = _references_slide(presentation_data, slides)
@@ -161,6 +164,8 @@ def _plan(presentation_data: dict) -> list[dict]:
                 "image_path": "",
                 "image_caption": "",
                 "notes": "\n".join(url for _, url in references["_references"] if url),
+                "citation": "",
+                "author": "",
             })
     return plan
 
@@ -294,8 +299,10 @@ def _body(item: dict) -> list[dict]:
 
 def _header(item: dict) -> dict:
     header = {"title": item["title"]}
-    if item["subtitle"]:
-        header["subtitle"] = item["subtitle"]
+    # The author is the last subtitle line on the title slide.
+    subtitle = "\n".join(part for part in (item["subtitle"], item.get("author", "")) if part)
+    if subtitle:
+        header["subtitle"] = subtitle
     return header
 
 
@@ -549,6 +556,7 @@ def _style_title_slide(slide, item: dict, header_shape, template: Template, deck
 
 
 def _style_footer(slide, template: Template, deck_title: str, dark: bool) -> None:
+    """Style the page number and add the footer text (deck title · citations)."""
     footer_top = template.page_height - template.margin_bottom - template.footer_height
     for shape in slide.shapes:
         if shape.top == footer_top and shape.has_text_frame and "/" in shape.text_frame.text:
@@ -559,9 +567,11 @@ def _style_footer(slide, template: Template, deck_title: str, dark: bool) -> Non
                                        Emu(_emu(8.0)), Emu(template.footer_height))
         box.name = "Footer Title"
         frame = box.text_frame
+        frame.word_wrap = True  # unwrapped text is centred by LibreOffice
         frame.vertical_anchor = MSO_ANCHOR.MIDDLE
         frame.margin_left = 0
         frame.text = deck_title
+        frame.paragraphs[0].alignment = PP_ALIGN.LEFT
         _font(frame.paragraphs[0].font, size=10, color=MUTED_COLOR)
 
 
@@ -719,7 +729,8 @@ def _brand_pass(pptx_file: Path, plan: list[dict], render_report, template: Temp
                 if shape.has_text_frame and re.fullmatch(r"\d+ / \d+", shape.text_frame.text.strip()):
                     shape._element.getparent().remove(shape._element)
         else:
-            _style_footer(slide, template, deck_title, dark=False)
+            footer = "  ·  ".join(part for part in (deck_title, item.get("citation", "")) if part)
+            _style_footer(slide, template, footer, dark=False)
 
     prs.save(str(pptx_file))
 
@@ -728,8 +739,13 @@ def _brand_pass(pptx_file: Path, plan: list[dict], render_report, template: Temp
 # PUBLIC ENTRY POINT
 # ============================================================
 
-def render_compono_pptx(output_file: Path, presentation_data: Any) -> Path:
-    """Render a Presentation (model or dict) to .pptx with Compono."""
+def render_compono_pptx(output_file: Path, presentation_data: Any, brand_pass: bool = True) -> Path:
+    """
+    Render a Presentation (model or dict) to .pptx with Compono.
+
+    brand_pass=False keeps Compono's own output (no python-pptx step):
+    no brand styling, captions or title-slide hero image.
+    """
     output_file = Path(output_file)
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -751,8 +767,10 @@ def render_compono_pptx(output_file: Path, presentation_data: Any) -> Path:
     if report.warnings:
         print(f"[compono] warnings: {report.warnings}")
 
-    with PERF.stage("Brand pass (python-pptx)"):
-        _brand_pass(output_file, plan, report, template, deck_title)
-
-    print(f"PPTX saved successfully (Compono): {output_file}")
+    if brand_pass:
+        with PERF.stage("Brand pass (python-pptx)"):
+            _brand_pass(output_file, plan, report, template, deck_title)
+        print(f"PPTX saved successfully (Compono + python-pptx brand pass): {output_file}")
+    else:
+        print(f"PPTX saved successfully (Compono only): {output_file}")
     return output_file

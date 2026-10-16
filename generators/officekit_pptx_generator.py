@@ -4,9 +4,10 @@ Professional PowerPoint Generator.
 
 Pipeline:
 1. Convert Pydantic presentation data into a dictionary.
-2. Render slides with Compono (config.PPTX_ENGINE = "compono"), falling
-   back to the python-pptx renderer if Compono fails.
-3. Inspect and validate the PPTX with Office-Kit.
+2. Render slides with the chosen engine: "compono", "python-pptx" or
+   "both" (Compono layout + python-pptx brand pass on the same file).
+3. Validate the final PPTX with Office-Kit (mandatory for every engine;
+   a failed validation raises PptxValidationError and keeps the file).
 4. Check layout (off-slide shapes, overlaps, tiny fonts) and images.
 5. Return the generated file path.
 """
@@ -109,121 +110,162 @@ def check_pptx_layout(pptx_file: Path) -> dict:
     return report
 
 
-def generate_pptx_with_officekit(
-    presentation: Any,
-    output_file: Path,
-) -> Path:
+# ============================================================
+# ENGINES
+# ============================================================
+
+# engine id -> label shown in the terminal
+PPTX_ENGINES = {
+    "compono": "Compono",
+    "python-pptx": "python-pptx",
+    "both": "Both (Compono layout + python-pptx brand pass)",
+}
+
+
+class PptxGenerationError(RuntimeError):
+    """Rendering failed or did not produce the PPTX file."""
+
+    stage = "generation"
+
+
+class PptxValidationError(RuntimeError):
+    """Office-Kit could not validate the final PPTX (the file is kept)."""
+
+    stage = "Office-Kit validation"
+
+    def __init__(self, message: str, review: dict | None = None):
+        super().__init__(message)
+        self.review = review
+
+
+def _render_compono(output_file: Path, data: dict) -> Path:
+    from office.compono_pptx import render_compono_pptx
+
+    return render_compono_pptx(output_file, data, brand_pass=False)
+
+
+def _render_both(output_file: Path, data: dict) -> Path:
+    # Compono writes the file; python-pptx then reopens that saved file
+    # (not Compono's objects) and applies the brand pass in place.
+    from office.compono_pptx import render_compono_pptx
+
+    return render_compono_pptx(output_file, data, brand_pass=True)
+
+
+def _render_python_pptx(output_file: Path, data: dict) -> Path:
+    with PERF.stage("PPTX slide building + save (python-pptx)"):
+        return render_rich_pptx(output_file=output_file, presentation_data=data)
+
+
+_RENDERERS = {
+    "compono": _render_compono,
+    "python-pptx": _render_python_pptx,
+    "both": _render_both,
+}
+
+
+def _slide_dicts(data: dict) -> list[dict]:
+    return [s if isinstance(s, dict) else s.model_dump() for s in data.get("slides", [])]
+
+
+def render_pptx(presentation: Any, output_file: Path, engine: str | None = None) -> Path:
     """
-    Generate a professional PPTX and run OfficeKit checks.
+    Render the presentation with one engine and return the saved file.
 
-    Args:
-        presentation: Presentation Pydantic model or dictionary.
-        output_file: Destination path for the PPTX file.
-
-    Returns:
-        Path to the generated PPTX file.
-
-    Raises:
-        TypeError: If the presentation data has an unsupported type.
-        ValueError: If required presentation content is missing.
-        RuntimeError: If PPTX rendering fails.
+    engine=None uses config.PPTX_ENGINE and, as before, falls back to the
+    python-pptx renderer if a Compono-based engine fails. An explicit engine
+    never falls back: its failure raises PptxGenerationError.
     """
+    use_fallback = engine is None
+    engine = engine or PPTX_ENGINE
+    if engine not in _RENDERERS:
+        raise ValueError(f"Unknown PPTX engine '{engine}'. Choose one of: {', '.join(_RENDERERS)}.")
 
     output_file = Path(output_file)
-    output_file.parent.mkdir(parents=True, exist_ok=True)
+    if output_file.suffix.lower() != ".pptx":
+        raise PptxGenerationError(f"Output path must end with .pptx: {output_file}")
+    try:
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise PptxGenerationError(f"Invalid output path {output_file}: {exc}") from exc
 
     data = _to_dict(presentation)
-
-    title = data.get("title", "Presentation")
-    slides = data.get("slides", [])
-
-    if not slides:
+    if not data.get("slides"):
         raise ValueError(
             "The presentation contains no slides. "
             "Generate slide content before rendering."
         )
 
-    print("\n========================================")
-    print("       PROFESSIONAL PPTX GENERATOR")
-    print("========================================")
-    print(f"Presentation: {title}")
-    print(f"Number of slides: {len(slides)}")
-    print(f"Output file: {output_file}")
-
-    # --------------------------------------------------------
-    # STEP 1: Render the presentation.
-    # Compono lays out the slides; python-pptx renderer is the fallback.
-    # --------------------------------------------------------
-
-    print(f"\n[1/3] Rendering PowerPoint slides (engine: {PPTX_ENGINE})...")
+    print(f"\n[1/3] Rendering PowerPoint slides (engine: {PPTX_ENGINES[engine]})...")
 
     try:
-        result = None
-        if PPTX_ENGINE == "compono":
-            try:
-                from office.compono_pptx import render_compono_pptx
-
-                result = render_compono_pptx(output_file, data)
-                PERF.incr("rendered with compono")
-            except Exception as exc:
-                print(f"[warning] Compono rendering failed, using python-pptx renderer: {exc!r}")
-                PERF.incr("compono fallbacks")
-
-        if result is None:
-            with PERF.stage("PPTX slide building + save (python-pptx)"):
-                result = render_rich_pptx(
-                    output_file=output_file,
-                    presentation_data=data,
-                )
-
-        if result is not None:
-            output_file = Path(result)
-
-        if not output_file.is_file():
-            raise RuntimeError(
-                "The renderer finished without creating the PPTX file."
-            )
-
-        print(f"PPTX created: {output_file}")
-
+        try:
+            result = _RENDERERS[engine](output_file, data)
+            PERF.incr(f"rendered with {engine}")
+        except Exception as exc:
+            if not (use_fallback and engine != "python-pptx"):
+                raise
+            print(f"[warning] Compono rendering failed, using python-pptx renderer: {exc!r}")
+            PERF.incr("compono fallbacks")
+            result = _render_python_pptx(output_file, data)
     except Exception as exc:
-        raise RuntimeError(
-            f"PowerPoint rendering failed: {exc}"
-        ) from exc
+        raise PptxGenerationError(f"PowerPoint rendering failed ({engine}): {exc}") from exc
 
-    # --------------------------------------------------------
-    # STEP 2-3: Inspect + validate with Office-Kit (open check, stats,
-    # issues, every slide title present, placeholder repair if needed).
-    # --------------------------------------------------------
+    if result is not None:
+        output_file = Path(result)
+    if not output_file.is_file():
+        raise PptxGenerationError(
+            f"The renderer finished without creating the PPTX file: {output_file}"
+        )
+
+    print(f"PPTX created: {output_file}")
+    return output_file
+
+
+def validate_pptx(output_file: Path, presentation: Any) -> dict:
+    """
+    Office-Kit validation of the final PPTX (open check, stats, issues,
+    every slide title present, placeholder repair). Runs once per file.
+
+    Raises PptxValidationError when the file is missing, Office-Kit raises,
+    or the review is not valid. The PPTX is never deleted.
+    """
+    output_file = Path(output_file)
+    data = _to_dict(presentation)
+    title = data.get("title", "Presentation")
+
+    if not output_file.is_file():
+        raise PptxValidationError(f"PPTX file to validate does not exist: {output_file}")
 
     print("\n[2/3] Inspecting and validating PPTX with Office-Kit...")
+    expected_titles = [str(s.get("title") or "") for s in _slide_dicts(data)]
+    try:
+        with PERF.stage("Office-Kit inspect + validate"):
+            review = review_document(
+                output_file,
+                expected_titles=expected_titles,
+                placeholder_values={"title": title},
+            )
+    except Exception as exc:
+        raise PptxValidationError(f"Office-Kit raised {exc!r} while validating {output_file}") from exc
 
-    validation_started = time.perf_counter()
-
-    expected_titles = []
-    for raw_slide in slides:
-        slide_dict = raw_slide if isinstance(raw_slide, dict) else raw_slide.model_dump()
-        expected_titles.append(str(slide_dict.get("title") or ""))
-
-    with PERF.stage("Office-Kit inspect + validate"):
-        review = review_document(
-            output_file,
-            expected_titles=expected_titles,
-            placeholder_values={"title": title},
-        )
     print_review(review)
-    if review["issues"] and not review["info"]:
-        raise RuntimeError(f"Office-Kit cannot open the generated PPTX: {review['issues']}")
+    if not review["valid"]:
+        problems = review["issues"] + [f"missing title: {t}" for t in review["missing_titles"]]
+        raise PptxValidationError(
+            f"Office-Kit validation failed for {output_file}: {problems}", review
+        )
+    return review
+
+
+def _check_layout_and_images(output_file: Path, data: dict) -> None:
+    """Project's own layout/image report (warnings only, not Office-Kit)."""
 
     print("\n[3/3] Checking layout and embedded images...")
-
-    # --------------------------------------------------------
-    # FINAL IMAGE VERIFICATION
-    # --------------------------------------------------------
+    validation_started = time.perf_counter()
 
     expected_images = 0
-    for raw_slide in slides:
-        slide_dict = raw_slide if isinstance(raw_slide, dict) else raw_slide.model_dump()
+    for slide_dict in _slide_dicts(data):
         image_path = slide_dict.get("image_path")
         if image_path and Path(image_path).is_file():
             expected_images += 1
@@ -251,9 +293,48 @@ def generate_pptx_with_officekit(
     else:
         print("[verification] Layout check: no off-slide shapes, overlaps or tiny fonts.")
 
-    # --------------------------------------------------------
-    # FINAL RESULT
-    # --------------------------------------------------------
+
+def generate_pptx_with_officekit(
+    presentation: Any,
+    output_file: Path,
+    engine: str | None = None,
+) -> Path:
+    """
+    Generate a PPTX with the chosen engine, then validate it with Office-Kit.
+
+    Args:
+        presentation: Presentation Pydantic model or dictionary.
+        output_file: Destination path for the PPTX file.
+        engine: "compono", "python-pptx", "both", or None for
+            config.PPTX_ENGINE (with the python-pptx fallback).
+
+    Returns:
+        Path to the generated and validated PPTX file.
+
+    Raises:
+        TypeError: If the presentation data has an unsupported type.
+        ValueError: If required presentation content is missing.
+        PptxGenerationError: If rendering fails or creates no file.
+        PptxValidationError: If Office-Kit validation fails (file is kept).
+    """
+
+    data = _to_dict(presentation)
+    print("\n========================================")
+    print("       PROFESSIONAL PPTX GENERATOR")
+    print("========================================")
+    print(f"Presentation: {data.get('title', 'Presentation')}")
+    print(f"Number of slides: {len(data.get('slides', []))}")
+    print(f"Output file: {output_file}")
+
+    print("\nGenerating presentation...")
+    output_file = render_pptx(data, output_file, engine)
+    print("PPTX generation completed.")
+
+    print("\nRunning Office-Kit validation...")
+    validate_pptx(output_file, data)
+    print("Validation passed.")
+
+    _check_layout_and_images(output_file, data)
 
     print("\n========================================")
     print("       PPTX GENERATION COMPLETED")
@@ -261,3 +342,8 @@ def generate_pptx_with_officekit(
     print(f"File: {output_file}")
 
     return output_file
+
+
+def generate_pptx(input_data: Any, output_path: Path, engine: str | None = None) -> Path:
+    """Common interface: generate + validate, return the final PPTX path."""
+    return generate_pptx_with_officekit(input_data, output_path, engine)

@@ -940,6 +940,9 @@ def _layout_title(slide, slide_data: dict, deck: dict) -> None:
     if subtitle:
         add_text_box(slide, subtitle, MARGIN_X, 4.85, text_width, 1.0, SUBTITLE_SIZE,
                      color=ON_DARK_BODY, name="Slide Subtitle")
+    if deck.get("author"):
+        add_text_box(slide, str(deck["author"]), MARGIN_X, 5.95, text_width, 0.45, SUBTITLE_SIZE - 2,
+                     bold=True, color=ON_DARK_MUTED, name="Author")
 
 
 def _layout_image_text(slide, slide_data: dict, deck: dict) -> None:
@@ -1243,10 +1246,12 @@ def _paginate(slides: list[dict]) -> list[dict]:
 
 def _references_slide(presentation_data: dict, slides: list[dict]) -> dict | None:
     entries = []
-    for source in presentation_data.get("sources", []) or []:
+    # Research sources keep their [n] number, which slide footers cite.
+    for number, source in enumerate(presentation_data.get("sources", []) or [], start=1):
         source = to_dict(source)
         if source.get("url") or source.get("title"):
-            entries.append((str(source.get("title") or source.get("url")), str(source.get("url") or "")))
+            entries.append((f"[{number}] {source.get('title') or source.get('url')}",
+                            str(source.get("url") or "")))
     for slide_data in slides:
         if slide_data.get("image_path") and slide_data.get("image_source"):
             page = next(iter(slide_data.get("source_urls") or []), "") or slide_data.get("image_url", "")
@@ -1259,6 +1264,16 @@ def _references_slide(presentation_data: dict, slides: list[dict]) -> dict | Non
         "layout": "references",
         "_references": entries[:14],
     }
+
+
+def citation_label(slide_data: dict) -> str:
+    """Footer citation for a slide, e.g. 'Sources [1], [4]' (or '')."""
+    numbers = slide_data.get("citations") or []
+    return "Sources " + ", ".join(f"[{n}]" for n in numbers) if numbers else ""
+
+
+def footer_text(deck_title: str, slide_data: dict) -> str:
+    return "  ·  ".join(part for part in (deck_title, citation_label(slide_data)) if part)
 
 
 # ============================================================
@@ -1318,7 +1333,7 @@ def render_rich_pptx(
         renderer(slide, slide_data, presentation_data)
 
         if layout != "title":
-            add_footer(slide, index, slide_data, deck_title,
+            add_footer(slide, index, slide_data, footer_text(deck_title, slide_data),
                        dark=layout == "conclusion")
 
         # Add sources to speaker notes when available.

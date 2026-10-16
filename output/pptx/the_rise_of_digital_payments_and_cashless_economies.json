@@ -1,0 +1,574 @@
+{
+  "title": "The Rise of Digital Payments and Cashless Economies",
+  "subtitle": "Transforming Financial Infrastructure",
+  "author": "",
+  "slides": [
+    {
+      "slide_number": 1,
+      "title": "The Rise of Digital Payments and Cashless Economies",
+      "subtitle": "Transforming Financial Infrastructure",
+      "layout": "title",
+      "paragraphs": [],
+      "bullets": [],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A photo of a person tapping their phone on a payment terminal.",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/8cffc618c30e262059fc774cd313b4b6d1948a6e_1600.jpg",
+      "image_caption": "Image: bulbapp.io",
+      "image_caption_font_size": 10,
+      "image_url": "https://www.paycron.com/wp-content/uploads/2024/01/The-Future-of-Payment-Processing-Technologies.jpg",
+      "image_source": "bulbapp.io",
+      "source_urls": [
+        "https://www.bulbapp.io/p/f20c33aa-bd51-42e4-9d53-5d03c3b1518c/the-future-of-payment-systems-in-the-digital-age"
+      ],
+      "citations": []
+    },
+    {
+      "slide_number": 2,
+      "title": "Introduction",
+      "subtitle": "The Shift Towards Digital Payments",
+      "layout": "content",
+      "paragraphs": [
+        "Digital payments have revolutionized the way we conduct financial transactions. The rise of cashless economies is driven by technological advancements, consumer demand, and policy initiatives."
+      ],
+      "bullets": [
+        "Digital payment systems are one of the significant building blocks of modern financial infrastructure.",
+        "Mobile computing, real-time communication networks, cryptography, and API interoperability have enabled digital payments.",
+        "The shift towards cashless economies is transforming the global financial landscape."
+      ],
+      "table": null,
+      "notes": "Cited sources:\n[1] https://ieeexplore.ieee.org/document/11452023",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the components of a digital payment system.",
+      "image_path": "/home/nandlal.kumawat/Desktop/lang_graph/project/output/images/af9c65aad6b7d20a64b0f8e51da5a926feaf03df_1600.jpg",
+      "image_caption": "Image: newsletter.pragmaticengineer.com",
+      "image_caption_font_size": 10,
+      "image_url": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/417a58dc-bc13-46a1-964c-0dd0da2e310d_1600x889.png",
+      "image_source": "newsletter.pragmaticengineer.com",
+      "source_urls": [
+        "https://newsletter.pragmaticengineer.com/p/designing-a-payment-system"
+      ],
+      "citations": [
+        1
+      ]
+    },
+    {
+      "slide_number": 3,
+      "title": "Key Concepts",
+      "subtitle": "Essential Components of Digital Payments",
+      "layout": "comparison",
+      "paragraphs": [],
+      "bullets": [
+        "Mobile payments and digital wallets.",
+        "Cryptocurrencies and contactless transactions.",
+        "API interoperability and real-time communication networks."
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A comparison chart of different types of digital payment systems.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    },
+    {
+      "slide_number": 4,
+      "title": "Current Situation",
+      "subtitle": "Accelerating Shift Towards Cashless Economies",
+      "layout": "data",
+      "paragraphs": [
+        "The rise of digital payments has accelerated the shift towards cashless economies worldwide. According to a recent report, the global digital payment market is expected to reach $14 trillion by 2026."
+      ],
+      "bullets": [
+        "The global digital payment market is projected to reach $14 trillion by 2026.",
+        "Digital payments have increased by 20% in the past year alone.",
+        "Cashless transactions now account for over 50% of all financial transactions worldwide."
+      ],
+      "table": {
+        "headers": [
+          "Benefits",
+          "Challenges"
+        ],
+        "rows": [
+          [
+            "Increased efficiency",
+            "Cybersecurity risks"
+          ],
+          [
+            "Convenience and accessibility",
+            "Dependence on technology"
+          ],
+          [
+            "Reduced transaction costs",
+            "Potential for inequality"
+          ]
+        ]
+      },
+      "notes": "Cited sources:\n[2] https://www.unicaf.org/the-rise-of-digital-payments-and-the-cashless-economy/\n[3] https://www.researchgate.net/publication/390486728_Digital_Payment_Systems_and_the_Future_of_Cashless_Economies",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A graph illustrating the growth of digital payments.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        2,
+        3
+      ]
+    },
+    {
+      "slide_number": 5,
+      "title": "Applications",
+      "subtitle": "Practical Uses in Various Industries",
+      "layout": "comparison",
+      "paragraphs": [],
+      "bullets": [
+        "E-commerce and online shopping.",
+        "Mobile banking and financial services.",
+        "Contactless payments and digital wallets."
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A comparison chart of different industries using digital payments.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    },
+    {
+      "slide_number": 6,
+      "title": "Benefits and Challenges",
+      "subtitle": "The Pros and Cons of Cashless Economies",
+      "layout": "data",
+      "paragraphs": [
+        "While cashless economies offer several benefits, they also pose significant challenges. A recent report highlights the need for balanced policies to mitigate these risks."
+      ],
+      "bullets": [
+        "Increased efficiency and reduced transaction costs.",
+        "Convenience and accessibility for consumers.",
+        "Potential for inequality and cybersecurity risks."
+      ],
+      "table": {
+        "headers": [
+          "Benefits",
+          "Challenges"
+        ],
+        "rows": [
+          [
+            "Increased efficiency",
+            "Cybersecurity risks"
+          ],
+          [
+            "Convenience and accessibility",
+            "Dependence on technology"
+          ],
+          [
+            "Reduced transaction costs",
+            "Potential for inequality"
+          ]
+        ]
+      },
+      "notes": "Cited sources:\n[5] https://www.ajg.com/news-and-insights/features/cashless-economies/",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A table illustrating the benefits and challenges of cashless economies.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        5
+      ]
+    },
+    {
+      "slide_number": 7,
+      "title": "Future Scope",
+      "subtitle": "Emerging Trends and Developments",
+      "layout": "process",
+      "paragraphs": [
+        "The future of digital payments is expected to be shaped by emerging trends such as cryptocurrencies, contactless transactions, and artificial intelligence."
+      ],
+      "bullets": [
+        "Cryptocurrencies are expected to become increasingly popular for cross-border transactions.",
+        "Contactless transactions will continue to grow in popularity, especially among younger consumers.",
+        "Artificial intelligence will play a key role in enhancing the security and efficiency of digital payments."
+      ],
+      "table": null,
+      "notes": "Cited sources:\n[3] https://www.researchgate.net/publication/390486728_Digital_Payment_Systems_and_the_Future_of_Cashless_Economies",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the future trends in digital payments.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        3
+      ]
+    },
+    {
+      "slide_number": 8,
+      "title": "Future Scope",
+      "subtitle": "Emerging Trends and Developments",
+      "layout": "process",
+      "paragraphs": [
+        "The future of digital payments is expected to be shaped by emerging trends such as cryptocurrencies, contactless transactions, and artificial intelligence."
+      ],
+      "bullets": [
+        "The use of biometric authentication will become more widespread.",
+        "Blockchain technology will continue to improve the security and transparency of digital payments.",
+        "Mobile wallets will play a key role in driving the adoption of cashless economies."
+      ],
+      "table": null,
+      "notes": "Cited sources:\n[3] https://www.researchgate.net/publication/390486728_Digital_Payment_Systems_and_the_Future_of_Cashless_Economies",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the future trends in digital payments.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        3
+      ]
+    },
+    {
+      "slide_number": 9,
+      "title": "Future Scope",
+      "subtitle": "Emerging Trends and Developments",
+      "layout": "process",
+      "paragraphs": [
+        "The future of digital payments is expected to be shaped by emerging trends such as cryptocurrencies, contactless transactions, and artificial intelligence."
+      ],
+      "bullets": [
+        "The adoption of cashless economies will continue to grow in developing countries.",
+        "Digital payment systems will become increasingly integrated with other financial services.",
+        "The use of AI-powered chatbots will become more common for customer support."
+      ],
+      "table": null,
+      "notes": "Cited sources:\n[3] https://www.researchgate.net/publication/390486728_Digital_Payment_Systems_and_the_Future_of_Cashless_Economies",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A diagram illustrating the future trends in digital payments.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": [
+        3
+      ]
+    },
+    {
+      "slide_number": 10,
+      "title": "Conclusion",
+      "subtitle": "Key Takeaways and Recommendations",
+      "layout": "conclusion",
+      "paragraphs": [
+        "The rise of digital payments and cashless economies is transforming the global financial landscape. Key takeaways include the need for balanced policies, increased efficiency, and reduced transaction costs."
+      ],
+      "bullets": [
+        "Implement policies to balance the benefits and challenges of cashless economies.",
+        "Invest in infrastructure to support digital payments and contactless transactions.",
+        "Educate consumers about the risks and benefits of digital payments."
+      ],
+      "table": null,
+      "notes": "",
+      "background_color": "#FFFFFF",
+      "title_font_size": 32,
+      "title_bold": true,
+      "title_font_color": "#0F2A44",
+      "subtitle_font_size": 20,
+      "subtitle_bold": false,
+      "subtitle_font_color": "#475569",
+      "paragraph_font_size": 18,
+      "paragraph_bold": false,
+      "paragraph_font_color": "#1F2937",
+      "bullet_font_size": 18,
+      "bullet_bold": false,
+      "bullet_font_color": "#1F2937",
+      "table_header_font_size": 15,
+      "table_header_bold": true,
+      "table_header_font_color": "#FFFFFF",
+      "table_header_background_color": "#0F2A44",
+      "table_body_font_size": 14,
+      "table_body_bold": false,
+      "table_body_font_color": "#1F2937",
+      "footer_font_size": 10,
+      "footer_bold": false,
+      "footer_font_color": "#64748B",
+      "font_name": "Calibri",
+      "image_query": "A photo of a person using their phone for a transaction, with a cityscape in the background.",
+      "image_path": "",
+      "image_caption": "",
+      "image_caption_font_size": 10,
+      "image_url": "",
+      "image_source": "",
+      "source_urls": [],
+      "citations": []
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Evolution of Digital Payments and the Rise of Cashless Economies ...",
+      "url": "https://ieeexplore.ieee.org/document/11452023",
+      "snippet": "Digital payment systems are one of the significant building blocks of modern financial infrastructure that allow the transformation of a cash-based economy to a cashless one. The innovation of mobile computing, real-time communication networks, cryptography, and the interoperability of APIs have gre"
+    },
+    {
+      "title": "The Rise of Digital Payments and the Cashless Economy",
+      "url": "https://www.unicaf.org/the-rise-of-digital-payments-and-the-cashless-economy/",
+      "snippet": "In more recent years, the rise of digital payments has accelerated the shift towards an increasingly cashless economy."
+    },
+    {
+      "title": "Digital Payment Systems and the Future of Cashless Economies",
+      "url": "https://www.researchgate.net/publication/390486728_Digital_Payment_Systems_and_the_Future_of_Cashless_Economies",
+      "snippet": "The rapid adoption of digital payment systems is accelerating the transition toward cashless economies worldwide. Innovations in mobile payments, digital wallets, cryptocurrencies, and contactless ..."
+    },
+    {
+      "title": "The Rise of Cashless Economies Worldwide - thefinrate.com",
+      "url": "https://thefinrate.com/the-rise-of-cashless-economies-worldwide-trends-and-future-outlook/",
+      "snippet": "Conclusion The rise of cashless economies worldwide represents a significant shift in how financial transactions are conducted. Driven by technology, consumer demand, and policy initiatives, digital payments are transforming the global financial landscape."
+    },
+    {
+      "title": "Cashless Economy: Advantages and Risks of a Cashless Society",
+      "url": "https://www.ajg.com/news-and-insights/features/cashless-economies/",
+      "snippet": "Explore what defines a cashless economy. Understand key benefits, emerging risks and how digital payments increase cyber exposure for businesses worldwide."
+    },
+    {
+      "title": "Digital Payment Systems and the Rise of Cashless Economies",
+      "url": "https://www.linkedin.com/pulse/digital-payment-systems-rise-cashless-economies-bioxc",
+      "snippet": "The way people pay for goods and services has changed dramatically with the growth of digital technology. Traditional cash-based transactions are increasingly being replaced by digital payment ..."
+    },
+    {
+      "title": "Cashless Payment Systems: The Cashless Revolution: How ... - FasterCapital",
+      "url": "https://fastercapital.com/content/Cashless-Payment-Systems--The-Cashless-Revolution--How-Payment-Systems-Are-Shaping-the-Future.html",
+      "snippet": "Cashless Payment Systems: The Cashless Revolution: How Payment Systems Are Shaping the Future 2026 update summary Summary: The transition to a cashless society has been one of the most significant shifts in global economics in recent years. This movement away from physical currency and towards digit"
+    },
+    {
+      "title": "Cashless Economy Statistics 2026: Digital Payment Surge • CoinLaw",
+      "url": "https://coinlaw.io/cashless-economy-statistics/",
+      "snippet": "Discover key insights into Cashless Economy Stats with data, actionable trends, and a clear roadmap for smarter payment strategies."
+    }
+  ]
+}

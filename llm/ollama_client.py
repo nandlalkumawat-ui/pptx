@@ -22,6 +22,9 @@ class OllamaClient:
         model: str = OLLAMA_MODEL,
     ):
         self.model = model
+        # Called once before the first real (non-cached) request, e.g. to
+        # wait for a background warm-up only when the model is needed.
+        self.before_request = None
 
         self.client = ollama.Client(
             host=OLLAMA_HOST,
@@ -144,6 +147,10 @@ class OllamaClient:
                 PERF.incr("llm cache hits")
                 print("[cache] Reusing identical earlier LLM answer.")
                 return cached
+
+        if self.before_request:
+            hook, self.before_request = self.before_request, None
+            hook()
 
         started = time.perf_counter()
 
